@@ -23,6 +23,11 @@ COPY . .
 # define working directory from container
 WORKDIR /
 
+# Set the vcpkg toolchain file
+ENV VCPKG_ROOT=/vcpkg
+ENV VCPKG_DEFAULT_TRIPLET=x64-linux
+ENV CMAKE_TOOLCHAIN_FILE=/vcpkg/scripts/buildsystems/vcpkg.cmake
+
 # compile with CMake 
 RUN bash -c "make"
 

@@ -26,7 +26,8 @@ OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 EXEC = backend.out
 
 # Compiler flags
-CXXFLAGS = -I$(INC_DIR) -std=c++11 -pthread
+CXXFLAGS = -I$(INC_DIR) -I/vcpkg/installed/x64-linux/include -std=c++11 -pthread
+LDFLAGS = -L/vcpkg/installed/x64-linux/lib -lcrow
 
 # Create build directory if it doesn't exist
 $(shell mkdir -p $(BUILD_DIR))
@@ -36,7 +37,7 @@ all: $(EXEC)
 
 # Link object files to create the executable
 $(EXEC): $(OBJS)
-	$(CXX) $(OBJS) -o $@
+	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
 
 # Compile source files to object files
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
@@ -50,4 +51,4 @@ run: $(EXEC)
 	./$(EXEC)
 
 # Phony targets
-.PHONY: all clean
+.PHONY: all clean run
