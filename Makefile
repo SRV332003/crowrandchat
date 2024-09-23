@@ -1,15 +1,4 @@
 
-# a.out: main.cpp
-# 	g++ main.cpp -Wall -Wextra -pedantic -std=c++11 -O2 -Wshadow -Wformat=2 -Wfloat-equal -Wconversion -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-qual -Wcast-align -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC -D_FORTIFY_SOURCE=2 
-
-# build/a.out: 
-
-
-# run: a.out
-# 	./a.out
-
-
-
 # Compiler
 CXX = g++
 
@@ -27,7 +16,6 @@ EXEC = backend.out
 
 # Compiler flags
 CXXFLAGS = -I$(INC_DIR) -I/vcpkg/installed/x64-linux/include -std=c++11 -pthread
-LDFLAGS = -L/vcpkg/installed/x64-linux/lib -lcrow
 
 # Create build directory if it doesn't exist
 $(shell mkdir -p $(BUILD_DIR))
@@ -37,7 +25,7 @@ all: $(EXEC)
 
 # Link object files to create the executable
 $(EXEC): $(OBJS)
-	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
+	$(CXX) $(OBJS) -o $@ 
 
 # Compile source files to object files
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
